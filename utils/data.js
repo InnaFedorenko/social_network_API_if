@@ -191,26 +191,19 @@ const getRandomUser = () => {
         const thoughts = [...getRandomThought(numThoughts)];
         const friends = [];
 
-        // Generate a random number of friends (max 5 friends for demonstration)
-        const numFriends = Math.floor(Math.random() * 6);
-
-        for (let i = 0; i < numFriends; i++) {
-            let friendUsername = getRandomName();
-            // Ensure the friend's username is not the same as the user's username
-            while (isUsernameInFriends(friendUsername, friends) || friendUsername === username) {
-                friendUsername = getRandomName();
-            }
-            // Add the friend to the friends array
-            friends.push({ username: friendUsername });
-        }
         const user = {
             username,
             email,
             thoughts,
-            friends,
+           friends,
         };
         return user;
 }
 
-module.exports = {getRandomUser, getRandomThought, getRandomReactions};
+// Function to get a random number of friends (between 1 and maxFriends)
+const getRandomFriends = (maxFriends) => {
+    return Math.floor(Math.random() * maxFriends) + 1;
+  };
+
+module.exports = {getRandomUser, getRandomThought, getRandomReactions, getRandomArrItem, getRandomFriends};
 

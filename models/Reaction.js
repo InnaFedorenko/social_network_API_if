@@ -1,4 +1,3 @@
-const { application } = require('express');
 const { Schema, model } = require('mongoose');
 
 // Schema to create Reaction model
@@ -21,15 +20,15 @@ const reactionSchema = new Schema(
     createdAt: {
         type: Date,
         default: Date.now,
-        // Use a getter method to format the timestamp on query
         get: (createdAtVal) => dateFormat(createdAtVal)
     }
 },
 {
     toJSON: {
-        getters: true
+        toJSON: { getters: true },
+        toObject: { getters: true },
     },  
-    id: false
+   // id: false
 });
 
 // // Create the Reaction model using the reactionSchema

@@ -15,7 +15,7 @@ module.exports = {
       //const users = await User.find();
       const users = await User.find()
       .populate({ path: 'thoughts'})
-      .populate('friends', 'username'); // Populate the 'friends' field with the corresponding User documents, showing only their usernames
+      .populate({ path: 'friends'}); // Populate the 'friends' field with the corresponding User documents, showing only their usernames
 
       res.json(users);
     } catch (err) {

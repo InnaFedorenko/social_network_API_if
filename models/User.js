@@ -1,4 +1,5 @@
 const { Schema, model } = require('mongoose');
+const Thought = require('./Thought');
 
 // Schema to create User model
 const userSchema = new Schema(
@@ -15,19 +16,20 @@ const userSchema = new Schema(
         unique: true,
         match: [/.+@.+\..+/]
     },
-    thoughts: [
+    thoughts: [Thought.schema],
+
+    friends: [
         {
-            type: Schema.Types.ObjectId,
-            ref: 'thought'
-        }
-    ],
-    friends: [      {
-        type: Schema.Types.ObjectId,
-        ref: 'user', // Self-reference to the User model
-      },]
+          type: Schema.Types.ObjectId,
+          ref: 'user', // Self-reference to the User model
+        },
+      ],
 },
 {
     toJSON: {
+        virtual: true
+    },
+    toObject: {
         virtual: true
     },
     id: false
