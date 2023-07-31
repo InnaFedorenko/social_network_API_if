@@ -6,7 +6,7 @@ const {
     updateUser,
     deleteUser
 } = require('../../controllers/userController');
-const { put } = require('./thoughtRoutes');
+//const { put } = require('./thoughtRoutes');
 
 
 // /api/users

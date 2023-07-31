@@ -1,5 +1,5 @@
-const { application } = require('express');
 const { Schema, model } = require('mongoose');
+const reactionSchema = require('./Reaction');
 const Reaction = require('./Reaction');
 
 // Schema to create Thought model
@@ -22,12 +22,11 @@ const thoughtSchema = new Schema(
         required: true
     },
     // Use ReactionsSchema to validate data for a reply
-    reactions: [Reaction]
+    reactions: [{reactionSchema}]
 },
 {
     toJSON: {
-        virtual: true,
-        getters: true
+        virtual: true
     },
     id: false
 });
