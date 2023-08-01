@@ -56,7 +56,7 @@ THEN I am able to successfully create and delete reactions to thoughts and add a
 2. to seed test data run `npm run seed`
 3. to start api run `npm run start`
 4. to debug project on dev server run `npm run dev`
-4. open routers in insomnia and run a request
+4. open routers in [insomnia](Documentation/Insomnia_SN_API.json) and run a request
 
 
 ## License
