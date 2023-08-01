@@ -19,8 +19,9 @@ const reactionSchema = new Schema(
     },
     createdAt: {
         type: Date,
-        default: Date.now,
-        get: (createdAtVal) => dateFormat(createdAtVal)
+        default: Date.now
+        //,
+       // get: (createdAtVal) => dateFormat(createdAtVal)
     }
 },
 {
@@ -32,7 +33,7 @@ const reactionSchema = new Schema(
 });
 
 // // Create the Reaction model using the reactionSchema
-// const Reaction = model('Reaction', reactionSchema);
+ const Reaction = model('Reaction', reactionSchema);
 
 // Export the Reaction model
-module.exports = reactionSchema;
+module.exports = Reaction;

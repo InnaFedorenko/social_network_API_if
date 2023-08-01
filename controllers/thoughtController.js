@@ -5,14 +5,23 @@ DELETE to pull and remove a reaction by the reaction's reactionId value
 */
 const router = require('express').Router();
 const { User, Thought } = require('../models');
+
+const reactionsCount = async (thoughtId) => {
+    const thought = await Thought.findById(thoughtId);
+    return thought.reactions.length;
+}
+
 module.exports = {
     // GET to get all thoughts
     async getThoughts(req, res) {
         try {
             const thoughts = await Thought.find()
-                .populate({ path: 'reactions' });
+                .select('-__v -reactions').lean();
+               // .populate({ path: 'reactions' });
 
-            console.log(thoughts);
+        for (const thought of thoughts) {
+            thought.reactionCount = await reactionsCount(thought._id);
+        }
             res.json(thoughts);
         } catch (err) {
             res.status(500).json(err);
@@ -41,14 +50,14 @@ module.exports = {
       "userId": "5edff358a0fcb779aa7b118b"
       }   
     */
-   async createThought(req, res) {
-    try {
-        const thought = await Thought.create(req.body);
-        res.json(thought);
-    } catch (err) {
-        res.status(500).json(err);
-    }
-},
+    async createThought(req, res) {
+        try {
+            const thought = await Thought.create(req.body);
+            res.json(thought);
+        } catch (err) {
+            res.status(500).json(err);
+        }
+    },
     // PUT to update a thought by its _id
     async updateThought(req, res) {
         try {
@@ -94,16 +103,16 @@ module.exports = {
             res.status(500).json(err);
         }
     },
-    
+
     //POST to create a reaction stored in a single thought's reactions array field
     async addReaction(req, res) {
         try {
             const thought = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
-                { $addToSet: { reactions: req.body } },
-                { runValidators: true, new: true }
+                {$addToSet: {reactions: req.body} },
+                {new: true}
             );
-
+            console.log(thought.reactions);
             if (!thought) {
                 return res.status(404).json({ message: 'No thought with this id!' });
             }
@@ -114,13 +123,14 @@ module.exports = {
     },
     //DELETE to pull and remove a reaction by the reaction's reactionId value   
     async deleteReaction(req, res) {
+        console.log(req.params.reactionId);
         try {
             const thought = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
-                { $pull: { reactions: { reactionId: req.params.reactionId } } },
-                { runValidators: true, new: true }
+                { $pull: { reactions: req.params.reactionId} },
+                { new: true }
             );
-
+            console.log (thought.reactions);
             if (!thought) {
                 return res.status(404).json({ message: 'No thought with this id!' });
             }
