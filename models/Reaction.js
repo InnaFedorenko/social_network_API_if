@@ -1,5 +1,5 @@
-const { Schema, model } = require('mongoose');
-
+const { Schema, Types } = require('mongoose');
+  
 // Schema to create Reaction model
 const reactionSchema = new Schema(
 {
@@ -19,21 +19,22 @@ const reactionSchema = new Schema(
     },
     createdAt: {
         type: Date,
-        default: Date.now
-        //,
-       // get: (createdAtVal) => dateFormat(createdAtVal)
+        default: Date.now,
+        get: (createdAtVal) => dateFormat(createdAtVal)
     }
-},
-{
-    toJSON: {
-        toJSON: { getters: true },
-        toObject: { getters: true },
-    },  
-   // id: false
-});
+}
+//,
+// {
+//     toJSON: {
+//         toJSON: { getters: true },
+//         toObject: { getters: true },
+//     },  
+//    // id: false
+// }
+);
 
 // // Create the Reaction model using the reactionSchema
- const Reaction = model('Reaction', reactionSchema);
+//const Reaction = model('Reaction', reactionSchema);
 
 // Export the Reaction model
-module.exports = Reaction;
+module.exports = reactionSchema;

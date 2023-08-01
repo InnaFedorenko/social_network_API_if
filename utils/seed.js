@@ -28,7 +28,7 @@ const addRandomFriendsToUser = async (userID, userIDs) => {
     // Save the updated user
     await user.save();
   
-    console.log('User updated successfully:', user);
+    //console.log('User updated successfully:', user);
   };
 
 connection.once('open', async () => {
@@ -66,6 +66,7 @@ connection.once('open', async () => {
     // loop through the saved applications, for each application we need to generate a application response and insert the application responses
     console.table(users);
     console.table(thoughts);
+    //console.log(JSON.stringify(thoughts, null, 2));
     console.info('Seeding complete! 🌱');
     process.exit(0);
 });  

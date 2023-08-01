@@ -148,9 +148,9 @@ const getRandomName = () => `${getRandomArrItem(names)} ${getRandomArrItem(names
 
 // Gets a random reaction
 const getRandomReactions = (int) => {
-    if (int === 1) {
-        return getRandomArrItem(reactions);
-    }
+    // if (int === 1) {
+    //     return getRandomArrItem(reactions);
+    // }
     const reactionArr = [];
     for (let i = 0; i < int; i++) {
         reactionArr.push({
@@ -160,6 +160,7 @@ const getRandomReactions = (int) => {
     }
     return reactionArr;
 };
+
 // Function to check if the username exists in the friends array
 const isUsernameInFriends = (username, friends) => {
     return friends.some((friend) => friend.username === username);
@@ -169,7 +170,7 @@ const isUsernameInFriends = (username, friends) => {
 // Gets a random thought with a random number of reactions
 const getRandomThought = (int) => {
     // Generate a random number of reactions (max 5 reactions for demonstration)
-    const numReactions = Math.floor(Math.random() * 6);
+    const numReactions = Math.floor(Math.random() * 6)+ 1;
     const thoughtArr = [];
     for (let i = 0; i < int; i++) {
         thoughtArr.push({
