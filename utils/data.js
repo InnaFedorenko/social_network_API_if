@@ -189,7 +189,8 @@ const getRandomUser = () => {
     // Gets a random user with a random number of thoughts and reactions
         const username = getRandomName();
         const email =  `${username.replace(/\s+/g, '')}${getRandomArrItem(emails).trim()}`;
-        const thoughts = [...getRandomThought(numThoughts)];
+        //const thoughts = [...getRandomThought(numThoughts)];
+        const thoughts = [];
         const friends = [];
 
         const user = {

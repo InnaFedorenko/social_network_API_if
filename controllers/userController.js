@@ -20,8 +20,8 @@ module.exports = {
           // Find all users, exclude the 'friends' field and include the 'friendCount' virtual field
           const users = await User.find()
             .select('-__v -friends') // Exclude __v and friends field from the response
-            .populate({ path: 'thoughts' })
-            .lean();
+           // .populate({ path: 'thoughts' })
+          //  .lean();
       
         // Calculate the friendCount for each user and add it to the users object
         for (const user of users) {
