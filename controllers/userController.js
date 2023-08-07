@@ -20,8 +20,8 @@ module.exports = {
           // Find all users, exclude the 'friends' field and include the 'friendCount' virtual field
           const users = await User.find()
             .select('-__v -friends') // Exclude __v and friends field from the response
-           // .populate({ path: 'thoughts' })
-          //  .lean();
+            .populate({ path: 'thoughts' })
+            .lean();
       
         // Calculate the friendCount for each user and add it to the users object
         for (const user of users) {
@@ -49,14 +49,7 @@ module.exports = {
             res.status(500).json(err);
         }
     },
-    /**  create a new user
-    POST a new user:
-      // example data
-      {
-        "username": "lernantino",
-        "email": "lernantino@gmail.com"
-      }
-      */
+    // POST a new user:
     async createUser(req, res) {
         try {
             const user = await User.create(req.body);
