@@ -10,7 +10,7 @@
 ##  Description
 - The Social Network API was developed by [Inna Fedorenko](https://github.com/InnaFedorenko).
 - [GiHub Link](https://github.com/InnaFedorenko/social_network_API_if)
-- [Video recording](https://drive.google.com/file/d/1OojVeAW7s3qhO6Qy-RZbVi5GNFybLiLp/view)
+- [Video recording](https://drive.google.com/file/d/1e0d1YjECq7P4AtxuTdHW6YWYusIOFQQ2/view)
 - Date: 07-31-2023
 
 ### API for a social network web application where users can share their thoughts, react to friends’ thoughts, and create a friend list. You’ll use Express.js for routing, a MongoDB database, and the Mongoose ODM. 
